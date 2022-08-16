@@ -4,47 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <style>
-        .container{
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
-        }
-        button{
-            padding: 50px;
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="./css/skeleton.css" />
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <title>Small js tutorial Project</title>
   </head>
   <body>
     <div class="container">
-        <button id="incr" >+</button>
-        <div class="value" id="value-p">
-          <p id="ju">0</p>
-        </div>
-        <button id="decr">-</button>
+      <h1>Project List</h1>
+      <div class="container">
+        <ol>
+          <li>
+            <a class="button button-primary" href="./counter/">Counter</a>
+          </li>
+        </ol>
+      </div>
     </div>
-    <script>
-        let count = 0;
-        const incrButton = document.querySelector("#incr")
-        const value = document.getElementById("value-p")
-        const decrButton = document.getElementById("decr")
-        
-        incrButton.addEventListener("click",function(){
-          count++;
-          value.innerText=count;
-        })
-
-        decrButton.addEventListener("click",function(){
-          count--;
-          if(count<0){
-            count=0;
-            return;
-          }
-          value.innerText=count;
-        } )
-        
-     </script>
   </body>
 </html>

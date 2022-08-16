@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Normal JS Counter</title>
+    <link rel="stylesheet" href="../css/skeleton.css" />
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.slim.js"
+      integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      .row {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <button id="incr" class="five columns">+</button>
+        <p class="value one column" id="value-p">0</p>
+        <button id="decr" class="five columns">-</button>
+      </div>
+      <div class="row">
+        <a href="./index.html" class="button button-primary eleven columns">
+          Go back
+        </a>
+      </div>
+    </div>
+    <script>
+      let count = 0;
+      $("#incr").click(function () {
+        $("#value-p").text(++count);
+      });
+
+      $("#decr").click(function () {
+        $("#value-p").text(count > 0 ? --count : 0);
+      });
+    </script>
+  </body>
+</html>
