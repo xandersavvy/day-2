@@ -24,26 +24,52 @@
         >
           +
         </button>
+        <button
+          class="add button button-primary"
+          class="one column"
+          onclick="deleteFunc()"
+        >
+          🗑
+        </button>
       </div>
       <div class="row" id="value"></div>
     </div>
     <script>
-      let arr = [];
+      let arr;
+      if (localStorage.getItem("db") !== null) {
+        arr = JSON.parse(localStorage.getItem("db"));
+      } else {
+        arr = [];
+      }
       let inp = document.getElementById("text-input");
       let valueHtml = document.getElementById("value");
+
+      generateHtml();
+
       function add() {
         if (inp.value === "") return;
         arr.push(inp.value);
         generateHtml();
         inp.value = "";
       }
+
+      function deleteFunc() {
+        arr.pop();
+        generateHtml();
+      }
+
       function generateHtml() {
+        localStorage.setItem("db", JSON.stringify(arr));
         let p = "";
         arr.map(function (value, index) {
           p += `<li>${value}</li>`;
         });
         valueHtml.innerHTML = p;
       }
+
+      onkeypress = function (e) {
+        if (e.key === "Enter") add();
+      };
     </script>
   </body>
 </html>
