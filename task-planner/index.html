@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- <link rel="stylesheet" href="../css/normalize.css" /> -->
+    <link rel="stylesheet" href="../css/skeleton.css" />
+    <title>Note taking</title>
+    <style>
+      .container {
+        margin: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <input type="text" name="" id="text-input" class="ten columns" />
+        <button
+          class="add button button-primary"
+          class="one column"
+          onclick="add()"
+        >
+          +
+        </button>
+      </div>
+      <div class="row" id="value"></div>
+    </div>
+    <script>
+      let arr = [];
+      let inp = document.getElementById("text-input");
+      let valueHtml = document.getElementById("value");
+      function add() {
+        if (inp.value === "") return;
+        arr.push(inp.value);
+        generateHtml();
+        inp.value = "";
+      }
+      function generateHtml() {
+        let p = "";
+        arr.map(function (value, index) {
+          p += `<li>${value}</li>`;
+        });
+        valueHtml.innerHTML = p;
+      }
+    </script>
+  </body>
+</html>
