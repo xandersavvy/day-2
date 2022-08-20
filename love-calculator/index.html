@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/skeleton.css" />
+  </head>
+  <body>
+    <div class="container">
+      <label for="person1">Enter your name</label>
+      <div class="row">
+        <input type="text" name="person1" id="person1" />
+        <label for="person2">Enter your partner's name</label>
+        <input type="text" name="person2" id="person2" />
+      </div>
+      <div class="row">
+        <button class="button button-primary" type="submit" onclick="submit()">
+          Click to Calculate
+        </button>
+      </div>
+      <div class="row">
+        <div id="result">
+          <p id="score">Not checked</p>
+          <p id="message">Not checked</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      const p1 = document.getElementById("person1");
+      const p2 = document.getElementById("person2");
+      function submit() {
+        if (p1.value === "" || p2.value === "") return;
+        if (hasNumber(p1.value) || hasNumber(p2.value)) {
+          p1.value = "";
+          p2.value = "";
+          return;
+        }
+
+        fetch(
+          `https://loverapi.herokuapp.com/api/v1/calculate?personA=${p1.value}&personB=${p2.value}`
+        )
+          .then((res) => res.json())
+          .then(function (data) {
+            showResult(data);
+          });
+
+        p1.value = "";
+        p2.value = "";
+      }
+
+      function showResult(data) {
+        const { message, result } = data;
+        document.getElementById("score").innerText = result;
+        document.getElementById("message").innerText = message;
+      }
+      function hasNumber(myString) {
+        return /\d/.test(myString);
+      }
+    </script>
+  </body>
+</html>
