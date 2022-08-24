@@ -43,11 +43,24 @@ function fetchCocktail(val = "A") {
     .then((data) => {
       const { drinks } = data;
       oldDrinks = drinks;
-      generateHtml(drinks, false);
+      generateFooter(6);
+      pagination();
     });
 }
 
 fetchCocktail();
+
+//uri component
+// function loadGenerate() {
+//   const params = new Proxy(new URLSearchParams(window.location.search), {
+//     get: (searchParams, prop) => searchParams.get(prop),
+//   });
+//   if (params.q !== null) openSingle(decodeURI(params.q));
+//   else fetchCocktail();
+// }
+// loadGenerate();
+
+//end of uri component
 
 function fetchNew() {
   fetchCocktail(selectEl.value);
@@ -75,7 +88,7 @@ function generateHtml(drinks = oldDrinks, ingred = false) {
           }</p></li>`;
         }
       }
-      resEl.innerHTML += `<div class="item-single" id="${strDrink}">
+      resEl.innerHTML += `<div class="item-single" id="${strDrink}" >
         
           <div class="thumb">
             <img
@@ -84,7 +97,7 @@ function generateHtml(drinks = oldDrinks, ingred = false) {
               srcset=""
             />
           </div>
-          <button class="button button-primary" onclick="generateHtml()">back</button>
+          <button class="button button-primary" onclick="pagination()">back</button>
            <p class="category">${strCategory}</p>
             <h1 class="name">${strDrink}</h1>
             <h3>Instruction:</h3>
@@ -95,7 +108,8 @@ function generateHtml(drinks = oldDrinks, ingred = false) {
         </div>
     `;
     } else {
-      resEl.innerHTML += `<div class="item" id="${strDrink}" onclick="openSingle(this.id)">
+      resEl.innerHTML += `
+      <div class="item" id="${strDrink}" onclick="openSingle(this.id)">
           <div class="thumb">
             <img
               src="${strDrinkThumb}"
@@ -138,4 +152,25 @@ function openSingle(id) {
     .then((data) => {
       generateHtml(data.drinks, true);
     });
+}
+
+//pagination
+
+let footerEl = document.getElementById("footer");
+
+function generateFooter(itemCount = 9) {
+  footerEl.innerHTML = "";
+  let len = oldDrinks.length;
+  let pageCount = len / itemCount;
+
+  if (len % itemCount !== 0) pageCount++;
+  for (let i = 1; i <= pageCount; i++) {
+    footerEl.innerHTML += `<button class="page" id=${i} onclick="pagination(this.id)">${i}</button>`;
+  }
+}
+function pagination(id = 1) {
+  let startIdx = (id - 1) * 6;
+  let endIdx =
+    startIdx + 6 > oldDrinks.length ? oldDrinks.length : startIdx + 6;
+  generateHtml(oldDrinks.slice(startIdx, endIdx));
 }
