@@ -70,7 +70,7 @@ function generateHtml(drinks = oldDrinks, ingred = false) {
       let p = "";
       for (let i = 1; i < 16; i++) {
         if (drink[`strIngredient${i}`] != null) {
-          p += `<li><h5>${drink[`strIngredient${i}`]} </h5><p> ${
+          p += `<li><p><strong>${drink[`strIngredient${i}`]} </strong>: ${
             drink[`strMeasure${i}`]
           }</p></li>`;
         }
@@ -89,6 +89,7 @@ function generateHtml(drinks = oldDrinks, ingred = false) {
             <h1 class="name">${strDrink}</h1>
             <h3>Instruction:</h3>
             <p>${drink.strInstructions}</p>
+            <hr/>
             <h3>Ingredients:</h3>
             <ul>${p}</ul>
         </div>
