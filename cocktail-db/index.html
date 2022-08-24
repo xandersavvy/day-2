@@ -17,7 +17,34 @@
       }
       .res {
         display: grid;
-        grid-template-columns: repeat(4, minmax(250px, 1fr));
+        grid-template-columns: repeat(3, minmax(25vw, 1fr));
+      }
+      .item {
+        padding: 10px;
+        margin: 10px;
+        border: solid 0.2px beige;
+        cursor: pointer;
+        background: beige;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .item-single {
+        padding: 10px;
+        margin: 10px;
+        border: solid 0.2px beige;
+        background: beige;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+      }
+      .item-single > * {
+        margin: 10px;
+      }
+      li {
+        list-style-type: none;
       }
     </style>
   </head>
@@ -34,7 +61,7 @@
         </button>
         <select name="value" id="alp-select" onchange="fetchNew()"></select>
       </div>
-      <div class="res" id="res"></div>
+      <div class="res" id="res">Loading</div>
     </div>
     <script src="script.js"></script>
   </body>
