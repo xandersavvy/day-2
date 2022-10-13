@@ -4,16 +4,12 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/skeleton.css" />
     <title>Cocktail</title>
 
     <style>
-      a {
+      a > * {
         text-decoration: none;
-        color: black;
-        background-color: rgb(237, 181, 68);
-        text-align: center;
-        padding: 10px;
-        font-variant: small-caps;
       }
       .row {
         display: flex;
@@ -56,7 +52,7 @@
         display: flex;
         flex-direction: column;
       }
-      .item > * {
+      .item-single > * {
         margin: 10px;
       }
       li {
@@ -86,11 +82,7 @@
         >
           🔎
         </button>
-        <select
-          name="value"
-          id="alp-select"
-          onchange="fetchCocktail(this.value)"
-        ></select>
+        <select name="value" id="alp-select" onchange="fetchNew()"></select>
       </div>
       <div class="res" id="res">Loading</div>
       <div class="footer row" id="footer"></div>
